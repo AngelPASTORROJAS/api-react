@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import UserResource from "./../api/ressources/UserRessource";
 
 const HomePage = () => {
-  const [animals, setAnimals] = useState([]);
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/photos/1")
-      .then((response) => {
-        setAnimals(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    //Il ne se lance qu'sau chargement du composant
+    async function fetchData() {
+      const response = await UserResource.getUsers();
+      setUsers(response.data);
+    }
+    fetchData();
   }, []);
-  return <>
-  <img src={animals.url} alt="" />
-  <p>{animals.title}</p>
-  </>;
+
+  return (
+    <>
+      <p>users</p>
+      {users.map((u) => (
+        <p>{"nom : " + u.name + ", prenom : " + u.username}</p>
+      ))}
+    </>
+  );
 };
+
 export default HomePage;
