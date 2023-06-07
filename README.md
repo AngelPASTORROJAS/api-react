@@ -15,7 +15,7 @@ npm run dev
 # Les routes et les pages
 
 ```
-/ : src/pages/HomePage.jsx
-/login : src/pages/LoginPage.jsx
+/       : src/pages/HomePage.jsx
+/login  : src/pages/LoginPage.jsx
 /update : src/pages/UpdatePage.jsx
 ```
